@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerController2D : MonoBehaviour
@@ -5,24 +6,60 @@ public class PlayerController2D : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
-
+    public Animator anim;
     [Header("Ground")]
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
     [SerializeField] private bool isGrounded;
     private float moveInput;
+    public SpriteRenderer sprite;
+    private int direction = 1;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();   
     }
 
     void Update()
     {
         // Input kiri kanan
-        moveInput = Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveInput = -1;
+            direction = -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            moveInput = 1;
+            direction = 1; 
+        }
+        else
+        {
+            moveInput = 0;
+        }
+        
+        
+        if (moveInput != 0)
+        {
+            anim.SetBool("running", true);
+        }
+        else
+        {
+            anim.SetBool("running", false);
+        }
 
+        if (direction == 1)
+        {
+            sprite.flipX = false;
+        }
+        else if (direction == -1)
+        {
+            sprite.flipX = true;
+        }
+           
         // Lompat
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
