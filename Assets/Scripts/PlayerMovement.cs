@@ -20,7 +20,11 @@ public class PlayerController2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();   
+        sprite = GetComponent<SpriteRenderer>();
+    }
+    public int GetDirection()
+    {
+        return direction;
     }
 
     void Update()
@@ -34,14 +38,14 @@ public class PlayerController2D : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             moveInput = 1;
-            direction = 1; 
+            direction = 1;
         }
         else
         {
             moveInput = 0;
         }
-        
-        
+
+
         if (moveInput != 0)
         {
             anim.SetBool("running", true);
@@ -53,13 +57,14 @@ public class PlayerController2D : MonoBehaviour
 
         if (direction == 1)
         {
-            sprite.flipX = false;
+            transform.localScale = new Vector3(0.4f, 0.4f, 1);
         }
         else if (direction == -1)
         {
-            sprite.flipX = true;
+            transform.localScale = new Vector3(-0.4f, 0.4f, 1);
         }
-           
+
+
         // Lompat
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
