@@ -46,15 +46,17 @@ public class PlayerController2D : MonoBehaviour
         }
 
 
-        if (moveInput != 0)
-        {
-            anim.SetBool("running", true);
-        }
-        else
-        {
-            anim.SetBool("running", false);
-        }
-
+        // if (moveInput != 0)
+        // {
+        //     anim.SetBool("running", true);
+        // }
+        // else
+        // {
+        //     anim.SetBool("running", false);
+        // }
+        //animasi jalan
+        anim.SetBool("running", moveInput != 0);
+        //flip karakter
         if (direction == 1)
         {
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
@@ -63,7 +65,9 @@ public class PlayerController2D : MonoBehaviour
         {
             transform.localScale = new Vector3(-0.4f, 0.4f, 1);
         }
-
+        //animasi
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("yVelocity", rb.velocity.y);
 
         // Lompat
         if (Input.GetButtonDown("Jump") && isGrounded)

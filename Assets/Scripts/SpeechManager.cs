@@ -9,20 +9,20 @@ public class SpeechManager : MonoBehaviour
     private KeywordRecognizer recognizer;
     private string[] allKeywords;
 
+    private skill playerSkill;
+
     void Start()
     {
-        // Ambil semua enemy
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        // Ambil skill player
+        playerSkill = FindObjectOfType<skill>();
 
         List<string> keywordsList = new List<string>();
 
-        foreach (Enemy e in enemies)
+        // Ambil semua keyword dari skill
+        foreach (string word in playerSkill.spells)
         {
-            foreach (string word in e.keywords)
-            {
-                if (!keywordsList.Contains(word))
-                    keywordsList.Add(word);
-            }
+            if (!keywordsList.Contains(word))
+                keywordsList.Add(word);
         }
 
         allKeywords = keywordsList.ToArray();
@@ -34,12 +34,10 @@ public class SpeechManager : MonoBehaviour
 
     void OnRecognized(PhraseRecognizedEventArgs args)
     {
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        Debug.Log("Kata terdeteksi: " + args.text);
 
-        foreach (Enemy e in enemies)
-        {
-            e.CheckWord(args.text);
-        }
+        // Kirim ke skill
+        playerSkill.spellingCast(args.text);
     }
 
     void OnDestroy()
