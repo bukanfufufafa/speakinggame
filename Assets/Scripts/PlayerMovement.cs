@@ -15,12 +15,13 @@ public class PlayerController2D : MonoBehaviour
     private float moveInput;
     public SpriteRenderer sprite;
     private int direction = 1;
-
+    private PlayerAttack playerAttack;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
     public int GetDirection()
     {
@@ -29,32 +30,35 @@ public class PlayerController2D : MonoBehaviour
 
     void Update()
     {
-        // Input kiri kanan
-        if (Input.GetKey(KeyCode.A))
+        if (playerAttack != null && playerAttack.isAttacking)
         {
-            moveInput = -1;
-            direction = -1;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            moveInput = 1;
-            direction = 1;
+            moveInput = 0; // paksa diam selagi nyerang
         }
         else
         {
-            moveInput = 0;
+            // Input kiri kanan
+            if (Input.GetKey(KeyCode.A))
+            {
+                moveInput = -1;
+                direction = -1;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                moveInput = 1;
+                direction = 1;
+            }
+            else
+            {
+                moveInput = 0;
+            }
+
+            // Lompat
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
 
-
-        // if (moveInput != 0)
-        // {
-        //     anim.SetBool("running", true);
-        // }
-        // else
-        // {
-        //     anim.SetBool("running", false);
-        // }
-        //animasi jalan
         anim.SetBool("running", moveInput != 0);
         //flip karakter
         if (direction == 1)

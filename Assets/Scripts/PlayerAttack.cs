@@ -9,8 +9,11 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Combo")]
     public int[] comboDamage = { 10, 15, 25 };
+    public float[] hitBoxTime = { 0.15f, 0.15f, 2f };
     public float comboJeda = 0.4f;
 
+    [Header("Animator")]
+    public Animator anim;
     [Header("Cooldown")]
     public float cooldownTime = 0.5f;
 
@@ -19,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     private int comboStep = 0;
     private float comboTimer;
     private bool isCooldown = false;
+    public bool isAttacking { get; private set; }
 
     void Start()
     {
@@ -45,13 +49,24 @@ public class PlayerAttack : MonoBehaviour
         if (isCooldown)
             return;
 
+
+        CancelInvoke(nameof(EndAttackLock));
+        CancelInvoke(nameof(DisableHitbox));
+
+        isAttacking = true;
+
         hitbox.GetComponent<AttakHitBox>().damage = comboDamage[comboStep];
 
         int dir = playerControll.GetDirection();
         attackPoint.localPosition = new Vector3(dir * attackDistance, 0f, 0f);
 
         hitbox.SetActive(true);
-        Invoke(nameof(DisableHitbox), 0.15f);
+
+        anim.SetTrigger("Attack");
+        anim.SetInteger("comboStep", comboStep + 1);
+
+
+        Invoke(nameof(DisableHitbox), hitBoxTime[comboStep]);
 
         comboStep++;
         comboTimer = comboJeda;
@@ -62,7 +77,10 @@ public class PlayerAttack : MonoBehaviour
             Invoke(nameof(ResetCooldown), cooldownTime);
         }
     }
-
+    void EndAttackLock()
+    {
+        isAttacking = false;
+    }
     void DisableHitbox()
     {
         hitbox.SetActive(false);
