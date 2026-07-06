@@ -67,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         Invoke(nameof(DisableHitbox), hitBoxTime[comboStep]);
-
+        Invoke(nameof(EndAttackLock), hitBoxTime[comboStep]);
         comboStep++;
         comboTimer = comboJeda;
 
@@ -90,5 +90,6 @@ public class PlayerAttack : MonoBehaviour
     {
         isCooldown = false;
         comboStep = 0;
+        isAttacking = false;
     }
 }
