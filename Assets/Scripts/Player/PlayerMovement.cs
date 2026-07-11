@@ -82,7 +82,7 @@ public class PlayerController2D : MonoBehaviour
     {
         // Gerakan horizontal
         float currentSpeed = stats != null ? stats.MoveSpeed : moveSpeed;
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveInput * currentSpeed, rb.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

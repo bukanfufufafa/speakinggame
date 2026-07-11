@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -18,10 +17,10 @@ public class PlayerAttack : MonoBehaviour
     [Header("Cooldown")]
     public float cooldownTime = 0.5f;
 
-
     private int comboStep = 0;
     private float comboTimer;
     private bool isCooldown = false;
+    private bool inputBuffered = false; // nyimpen klik yang masuk pas masih animasi
     private PlayerController2D playerControll;
     private characterStat stats;
     public bool isAttacking { get; private set; }
@@ -35,32 +34,42 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        // Reset combo jika terlalu lama
-        if (comboTimer > 0)
-            comboTimer -= Time.deltaTime;
-        else
-            comboStep = 0;
-
-        if (Input.GetMouseButtonDown(0))
+        if (!isAttacking)
         {
-            Attack();
+            if (comboTimer > 0)
+                comboTimer -= Time.deltaTime;
+            else
+                comboStep = 0;
+        }
+
+        bool klikSerangan = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F);
+
+        if (klikSerangan)
+        {
+            if (!isCooldown && !isAttacking)
+            {
+                // klik pas lagi free (tidak nyerang) -> langsung serang
+                Attack();
+            }
+            else if (isAttacking && !isCooldown)
+            {
+                // klik pas animasi masih jalan -> jangan dibuang, simpan dulu
+                inputBuffered = true;
+            }
         }
     }
 
     void Attack()
     {
-        if (isCooldown)
-            return;
-
-
         CancelInvoke(nameof(EndAttackLock));
         CancelInvoke(nameof(DisableHitbox));
 
         isAttacking = true;
+
         int finalDamage = comboDamage[comboStep];
-        if(stats != null)
+        if (stats != null)
         {
-            finalDamage += (stats.Intelligence /2);
+            finalDamage += (stats.Intelligence / 2);
         }
 
         hitbox.GetComponent<AttakHitBox>().damage = finalDamage;
@@ -73,22 +82,38 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("Attack");
         anim.SetInteger("comboStep", comboStep + 1);
 
+        float currentAttackTime = hitBoxTime[comboStep];
 
-        Invoke(nameof(DisableHitbox), hitBoxTime[comboStep]);
-        Invoke(nameof(EndAttackLock), hitBoxTime[comboStep]);
+        Invoke(nameof(DisableHitbox), currentAttackTime);
+        Invoke(nameof(EndAttackLock), currentAttackTime);
         comboStep++;
-        comboTimer = comboJeda;
+        comboTimer = currentAttackTime + comboJeda;
 
         if (comboStep >= comboDamage.Length)
         {
             isCooldown = true;
-            Invoke(nameof(ResetCooldown), cooldownTime);
+            // cooldown mulai dihitung SETELAH attack lock hit terakhir selesai,
+            // jadi tidak bentrok lagi kayak sebelumnya
+            Invoke(nameof(ResetCooldown), currentAttackTime + cooldownTime);
         }
     }
+
     void EndAttackLock()
     {
         isAttacking = false;
+
+        // kalau ada klik yang ke-buffer selama animasi tadi, lanjutkan combo otomatis
+        if (inputBuffered && !isCooldown)
+        {
+            inputBuffered = false;
+            Attack();
+        }
+        else
+        {
+            inputBuffered = false;
+        }
     }
+
     void DisableHitbox()
     {
         hitbox.SetActive(false);
@@ -98,6 +123,8 @@ public class PlayerAttack : MonoBehaviour
     {
         isCooldown = false;
         comboStep = 0;
-        isAttacking = false;
+        inputBuffered = false;
+        // isAttacking sengaja tidak disentuh di sini, biar EndAttackLock
+        // yang selalu jadi satu-satunya yang ngatur isAttacking
     }
 }
