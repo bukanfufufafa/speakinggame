@@ -6,6 +6,7 @@ public class PlayerController2D : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
+    [Range(0f,1f)] public float jumpCut = 0.5f;
     public Animator anim;
     [Header("Ground")]
     public LayerMask groundLayer;
@@ -58,6 +59,13 @@ public class PlayerController2D : MonoBehaviour
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+                if(rb.velocity.y > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpCut);
+                }
             }
         }
 

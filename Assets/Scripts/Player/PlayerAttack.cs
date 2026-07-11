@@ -106,6 +106,8 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             inputBuffered = false;
+            comboStep = 0; 
+            comboTimer = 0;
         }
     }
 
