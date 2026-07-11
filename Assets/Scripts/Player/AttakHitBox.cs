@@ -8,7 +8,7 @@ public class AttakHitBox : MonoBehaviour
     {
         if (collision.CompareTag("enemy"))
         {
-            collision.GetComponent<enemyHp>()?.takeDamage(damage);
+            collision.GetComponent<enemyStatus>()?.takeDamage(damage);
         }     
     }
 }

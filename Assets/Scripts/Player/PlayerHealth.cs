@@ -1,24 +1,24 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : entity_status
 {
     [SerializeField] private characterStat stats;
 
-    private int currentHealth;
-    public int CurrentHealth => currentHealth;
+    //private int currentHealth;
+    //public int CurrentHealth => currentHealth;
     // Start is called before the first frame update
     private void Start()
     {
-      currentHealth = stats.MaxHealth;   
+      //currentHealth = stats.MaxHealth;   
     }
 
-    public void takeDamage(int damage)
-    {
-        currentHealth -= damage;
+    //public void takeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
 
-        if(currentHealth <= 0)
-            Die();
-    }
+    //    if(currentHealth <= 0)
+    //        Die();
+    //}
     //bisa nanti tambahin heal disini
     public void Die()
     {

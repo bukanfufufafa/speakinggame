@@ -6,10 +6,12 @@ public class PlayerController2D : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
-    [Range(0f,1f)] public float jumpCut = 0.5f;
+    [Range(0f, 1f)] public float jumpCut = 0.5f;
     public Animator anim;
+
     [Header("Ground")]
     public LayerMask groundLayer;
+    public bool fallThrough = false;
 
     private Rigidbody2D rb;
     [SerializeField] private bool isGrounded;
@@ -18,6 +20,7 @@ public class PlayerController2D : MonoBehaviour
     private int direction = 1;
     private PlayerAttack playerAttack;
     private characterStat stats;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +29,7 @@ public class PlayerController2D : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         stats = GetComponent<characterStat>();
     }
+
     public int GetDirection()
     {
         return direction;
@@ -35,7 +39,8 @@ public class PlayerController2D : MonoBehaviour
     {
         if (playerAttack != null && playerAttack.isAttacking)
         {
-            moveInput = 0; // paksa diam selagi nyerang
+            moveInput = 0;
+            fallThrough = false;
         }
         else
         {
@@ -60,17 +65,23 @@ public class PlayerController2D : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
+
+            // Jump Cut
             if (Input.GetButtonUp("Jump"))
             {
-                if(rb.velocity.y > 0)
+                if (rb.velocity.y > 0)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpCut);
                 }
             }
+
+            // Flag untuk drop melalui platform
+            fallThrough = Input.GetKey(KeyCode.S);
         }
 
         anim.SetBool("running", moveInput != 0);
-        //flip karakter
+
+        // Flip karakter
         if (direction == 1)
         {
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
@@ -79,16 +90,13 @@ public class PlayerController2D : MonoBehaviour
         {
             transform.localScale = new Vector3(-0.4f, 0.4f, 1);
         }
-        //animasi
+
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
-
-       
     }
 
     void FixedUpdate()
     {
-        // Gerakan horizontal
         float currentSpeed = stats != null ? stats.MoveSpeed : moveSpeed;
         rb.velocity = new Vector2(moveInput * currentSpeed, rb.velocity.y);
     }
