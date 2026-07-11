@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundController : MonoBehaviour
 {
     private float startPos;
-    private float length;
+    //private float length;
 
     public GameObject cam;
     public float parallaxEffect; // kecepatan background relatif terhadap kamera
@@ -13,7 +13,7 @@ public class BackgroundController : MonoBehaviour
     void Start()
     {
         startPos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        //length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     void FixedUpdate()
@@ -30,13 +30,13 @@ public class BackgroundController : MonoBehaviour
         );
 
         // Infinite scrolling
-        if (movement > startPos + length)
-        {
-            startPos += length;
-        }
-        else if (movement < startPos - length)
-        {
-            startPos -= length;
-        }
+        //if (movement > startPos + length)
+        //{
+        //    startPos += length;
+        //}
+        //else if (movement < startPos - length)
+        //{
+        //    startPos -= length;
+        //}
     }
 }

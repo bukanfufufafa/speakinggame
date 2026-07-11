@@ -9,6 +9,7 @@ public class PlayerController2D : MonoBehaviour
     public Animator anim;
     [Header("Ground")]
     public LayerMask groundLayer;
+    public bool fallThrough = false;
 
     private Rigidbody2D rb;
     [SerializeField] private bool isGrounded;
@@ -57,6 +58,16 @@ public class PlayerController2D : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                fallThrough = true;
+            }
+            else
+            {
+                fallThrough = false;
+            }
+
         }
 
         anim.SetBool("running", moveInput != 0);
