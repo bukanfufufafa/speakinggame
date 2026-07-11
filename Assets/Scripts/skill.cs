@@ -21,7 +21,7 @@ public class skill : MonoBehaviour
         {
             if (spells[i].ToLower() == word.ToLower())
             {
-                ApplyEffect(i);
+                // ApplyEffect(i);
                 return;
             }
         }
@@ -29,17 +29,17 @@ public class skill : MonoBehaviour
         Debug.Log("Kata tidak cocok");
     }
 
-    void ApplyEffect(int index)
-    {
-        int value = effects[index];
+    // void ApplyEffect(int index)
+    // {
+    //     int value = effects[index];
 
-        characterStat.health += value;
+    //     characterStat.health += value;
 
-        // clamp biar tidak minus
-        if (characterStat.health < 0)
-            characterStat.health = 0;
+    //     // clamp biar tidak minus
+    //     if (characterStat.health < 0)
+    //         characterStat.health = 0;
 
-        Debug.Log("Spell index " + index + " efek: " + value +
-                  " | Health sekarang: " + characterStat.health);
-    }
+    //     Debug.Log("Spell index " + index + " efek: " + value +
+    //               " | Health sekarang: " + characterStat.health);
+    // }
 }

@@ -16,12 +16,14 @@ public class PlayerController2D : MonoBehaviour
     public SpriteRenderer sprite;
     private int direction = 1;
     private PlayerAttack playerAttack;
+    private characterStat stats;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerAttack = GetComponent<PlayerAttack>();
+        stats = GetComponent<characterStat>();
     }
     public int GetDirection()
     {
@@ -73,16 +75,13 @@ public class PlayerController2D : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
 
-        // Lompat
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+       
     }
 
     void FixedUpdate()
     {
         // Gerakan horizontal
+        float currentSpeed = stats != null ? stats.MoveSpeed : moveSpeed;
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
     }
 

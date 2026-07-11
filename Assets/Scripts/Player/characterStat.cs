@@ -14,7 +14,7 @@ public class characterStat : MonoBehaviour
     public int Vitality => vitality;
     public int Agility => agility;
 
-    //final stats nya jadi 
+    //final stats nya jadi kiye
     public int MagicAttack => intelligence * 3;
 
     public int MaxMana => intelligence * 15;

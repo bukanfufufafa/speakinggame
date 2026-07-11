@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -17,16 +18,18 @@ public class PlayerAttack : MonoBehaviour
     [Header("Cooldown")]
     public float cooldownTime = 0.5f;
 
-    private PlayerController2D playerControll;
 
     private int comboStep = 0;
     private float comboTimer;
     private bool isCooldown = false;
+    private PlayerController2D playerControll;
+    private characterStat stats;
     public bool isAttacking { get; private set; }
 
     void Start()
     {
         playerControll = GetComponent<PlayerController2D>();
+        stats = GetComponent<characterStat>();
         hitbox.SetActive(false);
     }
 
@@ -54,8 +57,13 @@ public class PlayerAttack : MonoBehaviour
         CancelInvoke(nameof(DisableHitbox));
 
         isAttacking = true;
+        int finalDamage = comboDamage[comboStep];
+        if(stats != null)
+        {
+            finalDamage += (stats.Intelligence /2);
+        }
 
-        hitbox.GetComponent<AttakHitBox>().damage = comboDamage[comboStep];
+        hitbox.GetComponent<AttakHitBox>().damage = finalDamage;
 
         int dir = playerControll.GetDirection();
         attackPoint.localPosition = new Vector3(dir * attackDistance, 0f, 0f);
