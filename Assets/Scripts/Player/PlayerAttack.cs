@@ -17,45 +17,60 @@ public class PlayerAttack : MonoBehaviour
     [Header("Cooldown")]
     public float cooldownTime = 0.5f;
 
-    private PlayerController2D playerControll;
-
     private int comboStep = 0;
     private float comboTimer;
     private bool isCooldown = false;
+    private bool inputBuffered = false; 
+    private PlayerController2D playerControll;
+    private characterStat stats;
     public bool isAttacking { get; private set; }
 
     void Start()
     {
         playerControll = GetComponent<PlayerController2D>();
+        stats = GetComponent<characterStat>();
         hitbox.SetActive(false);
     }
 
     void Update()
     {
-        // Reset combo jika terlalu lama
-        if (comboTimer > 0)
-            comboTimer -= Time.deltaTime;
-        else
-            comboStep = 0;
-
-        if (Input.GetMouseButtonDown(0))
+        if (!isAttacking)
         {
-            Attack();
+            if (comboTimer > 0)
+                comboTimer -= Time.deltaTime;
+            else
+                comboStep = 0;
+        }
+
+        bool klikSerangan = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F);
+
+        if (klikSerangan)
+        {
+            if (!isCooldown && !isAttacking)
+            {
+                Attack();
+            }
+            else if (isAttacking && !isCooldown)
+            {
+                inputBuffered = true;
+            }
         }
     }
 
     void Attack()
     {
-        if (isCooldown)
-            return;
-
-
         CancelInvoke(nameof(EndAttackLock));
         CancelInvoke(nameof(DisableHitbox));
 
         isAttacking = true;
 
-        hitbox.GetComponent<AttakHitBox>().damage = comboDamage[comboStep];
+        int finalDamage = comboDamage[comboStep];
+        if (stats != null)
+        {
+            finalDamage += (stats.Intelligence / 2);
+        }
+
+        hitbox.GetComponent<AttakHitBox>().damage = finalDamage;
 
         int dir = playerControll.GetDirection();
         attackPoint.localPosition = new Vector3(dir * attackDistance, 0f, 0f);
@@ -65,22 +80,37 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("Attack");
         anim.SetInteger("comboStep", comboStep + 1);
 
+        float currentAttackTime = hitBoxTime[comboStep];
 
-        Invoke(nameof(DisableHitbox), hitBoxTime[comboStep]);
-        Invoke(nameof(EndAttackLock), hitBoxTime[comboStep]);
+        Invoke(nameof(DisableHitbox), currentAttackTime);
+        Invoke(nameof(EndAttackLock), currentAttackTime);
         comboStep++;
-        comboTimer = comboJeda;
+        comboTimer = currentAttackTime + comboJeda;
 
         if (comboStep >= comboDamage.Length)
         {
             isCooldown = true;
-            Invoke(nameof(ResetCooldown), cooldownTime);
+            Invoke(nameof(ResetCooldown), currentAttackTime + cooldownTime);
         }
     }
+
     void EndAttackLock()
     {
         isAttacking = false;
+
+        if (inputBuffered && !isCooldown)
+        {
+            inputBuffered = false;
+            Attack();
+        }
+        else
+        {
+            inputBuffered = false;
+            comboStep = 0; 
+            comboTimer = 0;
+        }
     }
+
     void DisableHitbox()
     {
         hitbox.SetActive(false);
@@ -90,6 +120,6 @@ public class PlayerAttack : MonoBehaviour
     {
         isCooldown = false;
         comboStep = 0;
-        isAttacking = false;
+        inputBuffered = false;
     }
 }

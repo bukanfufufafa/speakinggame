@@ -6,10 +6,10 @@ public class PlayerController2D : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
+    [Range(0f,1f)] public float jumpCut = 0.5f;
     public Animator anim;
     [Header("Ground")]
     public LayerMask groundLayer;
-    public bool fallThrough = false;
 
     private Rigidbody2D rb;
     [SerializeField] private bool isGrounded;
@@ -17,12 +17,14 @@ public class PlayerController2D : MonoBehaviour
     public SpriteRenderer sprite;
     private int direction = 1;
     private PlayerAttack playerAttack;
+    private characterStat stats;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerAttack = GetComponent<PlayerAttack>();
+        stats = GetComponent<characterStat>();
     }
     public int GetDirection()
     {
@@ -58,16 +60,13 @@ public class PlayerController2D : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
-
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetButtonUp("Jump"))
             {
-                fallThrough = true;
+                if(rb.velocity.y > 0)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpCut);
+                }
             }
-            else
-            {
-                fallThrough = false;
-            }
-
         }
 
         anim.SetBool("running", moveInput != 0);
@@ -84,17 +83,14 @@ public class PlayerController2D : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
 
-        // Lompat
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+       
     }
 
     void FixedUpdate()
     {
         // Gerakan horizontal
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        float currentSpeed = stats != null ? stats.MoveSpeed : moveSpeed;
+        rb.velocity = new Vector2(moveInput * currentSpeed, rb.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
