@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
     private int comboStep = 0;
     private float comboTimer;
     private bool isCooldown = false;
-    private bool inputBuffered = false; // nyimpen klik yang masuk pas masih animasi
+    private bool inputBuffered = false; 
     private PlayerController2D playerControll;
     private characterStat stats;
     public bool isAttacking { get; private set; }
@@ -48,12 +48,10 @@ public class PlayerAttack : MonoBehaviour
         {
             if (!isCooldown && !isAttacking)
             {
-                // klik pas lagi free (tidak nyerang) -> langsung serang
                 Attack();
             }
             else if (isAttacking && !isCooldown)
             {
-                // klik pas animasi masih jalan -> jangan dibuang, simpan dulu
                 inputBuffered = true;
             }
         }
@@ -92,8 +90,6 @@ public class PlayerAttack : MonoBehaviour
         if (comboStep >= comboDamage.Length)
         {
             isCooldown = true;
-            // cooldown mulai dihitung SETELAH attack lock hit terakhir selesai,
-            // jadi tidak bentrok lagi kayak sebelumnya
             Invoke(nameof(ResetCooldown), currentAttackTime + cooldownTime);
         }
     }
@@ -102,7 +98,6 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = false;
 
-        // kalau ada klik yang ke-buffer selama animasi tadi, lanjutkan combo otomatis
         if (inputBuffered && !isCooldown)
         {
             inputBuffered = false;
@@ -124,7 +119,5 @@ public class PlayerAttack : MonoBehaviour
         isCooldown = false;
         comboStep = 0;
         inputBuffered = false;
-        // isAttacking sengaja tidak disentuh di sini, biar EndAttackLock
-        // yang selalu jadi satu-satunya yang ngatur isAttacking
     }
 }
