@@ -134,7 +134,7 @@ public class EnemyRoutine : MonoBehaviour
         anim.SetBool("isIdle", false);
     }
 
-    private void Chasing()
+    public void Chasing()
     {
         if (enemyStatus.playerPos == null)
         {
@@ -167,7 +167,7 @@ public class EnemyRoutine : MonoBehaviour
         anim.SetBool("isIdle", false);
     }
 
-    private void ReturnToStart()
+    public void ReturnToStart()
     {
         Vector2 target = new Vector2(startX, rb.position.y);
 
