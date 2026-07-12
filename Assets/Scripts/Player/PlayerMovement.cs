@@ -1,4 +1,3 @@
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerController2D : MonoBehaviour
@@ -19,7 +18,11 @@ public class PlayerController2D : MonoBehaviour
     public SpriteRenderer sprite;
     private int direction = 1;
     private PlayerAttack playerAttack;
+    private SkillManager skillManager;
     private characterStat stats;
+
+    // Tambahkan properti helper agar kode lebih bersih
+    private bool IsBusy => (playerAttack != null && playerAttack.isAttacking) || (skillManager != null && skillManager.SedangCasting);
 
     void Start()
     {
@@ -27,6 +30,7 @@ public class PlayerController2D : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerAttack = GetComponent<PlayerAttack>();
+        skillManager = GetComponent<SkillManager>();
         stats = GetComponent<characterStat>();
     }
 
@@ -37,14 +41,16 @@ public class PlayerController2D : MonoBehaviour
 
     void Update()
     {
-        if (playerAttack != null && playerAttack.isAttacking)
+        if (IsBusy)
         {
             moveInput = 0;
             fallThrough = false;
+            // Jika sedang casting/attack, kita paksa velocity X langsung 0 di sini juga agar responsif
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
         else
         {
-            // Input kiri kanan
+            // Input kiri kanan menggunakan Input.GetAxisRaw agar stop-and-go lebih tajam
             if (Input.GetKey(KeyCode.A))
             {
                 moveInput = -1;
@@ -79,6 +85,7 @@ public class PlayerController2D : MonoBehaviour
             fallThrough = Input.GetKey(KeyCode.S);
         }
 
+        // Set parameter animasi lari
         anim.SetBool("running", moveInput != 0);
 
         // Flip karakter
@@ -97,6 +104,13 @@ public class PlayerController2D : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Jika sedang sibuk casting/menyerang, jangan biarkan ada kalkulasi pergerakan baru
+        if (IsBusy)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            return;
+        }
+
         float currentSpeed = stats != null ? stats.MoveSpeed : moveSpeed;
         rb.velocity = new Vector2(moveInput * currentSpeed, rb.velocity.y);
     }
