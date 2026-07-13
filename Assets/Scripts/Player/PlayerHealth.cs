@@ -1,27 +1,37 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : entity_status
 {
     [SerializeField] private characterStat stats;
+    public Slider healthBar;
+    public Slider manaBar;
 
-    //private int currentHealth;
-    //public int CurrentHealth => currentHealth;
-    // Start is called before the first frame update
-    private void Start()
+    protected override void Start()
     {
-      //currentHealth = stats.MaxHealth;   
+        base.Start();
+
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
+
+        manaBar.maxValue = maxMana;
+        manaBar.value = mana;
     }
 
-    //public void takeDamage(int damage)
-    //{
-    //    currentHealth -= damage;
-
-    //    if(currentHealth <= 0)
-    //        Die();
-    //}
-    //bisa nanti tambahin heal disini
     public void Die()
     {
         Debug.Log("Player Mati");
+    }
+
+    private void Update()
+    {
+        healthBar.value = health;
+        manaBar.value = mana;
+
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("gameover");
+        }
     }
 }

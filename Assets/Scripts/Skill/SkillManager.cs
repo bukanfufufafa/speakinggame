@@ -16,13 +16,19 @@ public class SkillManager : MonoBehaviour
     public ProjectileSkillData waterSlashData;
 
     [Header("Resource Pemain")]
-    public float manaSaatIni = 100f;
+    [SerializeField] private PlayerHealth PlayerHealth;
+    //public float manaSaatIni = 100f;
 
     public bool SedangCasting { get; private set; } = false;
 
     private Dictionary<SkillDatabase, float> cooldownTersisa = new Dictionary<SkillDatabase, float>();
     private ProjectileSkillData skillYangSedangDicasting; // dipakai animation event
 
+    private void Start()
+    {
+        PlayerHealth = GetComponent<PlayerHealth>();
+
+    }
     private void Awake()
     {
         inputSkillE.OnTap += () => CobaAktivasiSkill(waterBallData);
@@ -53,13 +59,13 @@ public class SkillManager : MonoBehaviour
             Debug.Log(data.namaSkill + " masih cooldown: " + GetCooldown(data).ToString("F1") + "s");
             return;
         }
-        if (manaSaatIni < data.manaCost)
+        if (PlayerHealth.mana < data.manaCost)
         {
             Debug.Log("Mana tidak cukup");
             return;
         }
 
-        manaSaatIni -= data.manaCost;
+        PlayerHealth.mana -= data.manaCost;
         cooldownTersisa[data] = data.cooldownTime;
         SedangCasting = true;
         skillYangSedangDicasting = data;
