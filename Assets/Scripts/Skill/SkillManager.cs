@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
@@ -6,92 +7,81 @@ public class SkillManager : MonoBehaviour
     public Animator animator;
     public Transform firePoint;
 
-    [Header("Skill Elemen Air (fokus dulu, nanti diganti sistem wheel)")]
-    public WaterBallSkillData waterBallData;
+    [Header("Input")]
+    public InputDetection inputSkillE;
+    public InputDetection inputSkillQ;
+
+    [Header("Skill Elemen Air")]
+    public ProjectileSkillData waterBallData;
+    public ProjectileSkillData waterSlashData;
 
     [Header("Resource Pemain")]
     public float manaSaatIni = 100f;
-    [Header("Resource Pemain")]
-    public InputDetection inputSkill;
 
     public bool SedangCasting { get; private set; } = false;
-    private float cooldownWaterBallTersisa = 0f;
+
+    private Dictionary<SkillDatabase, float> cooldownTersisa = new Dictionary<SkillDatabase, float>();
+    private ProjectileSkillData skillYangSedangDicasting; // dipakai animation event
 
     private void Awake()
     {
-        inputSkill.OnTap += HandleTapAir;
-        inputSkill.OnHoldStart += HandleHoldMulaiAir;
-        inputSkill.OnHoldEnd += HandleHoldSelesaiAir;
+        inputSkillE.OnTap += () => CobaAktivasiSkill(waterBallData);
+        inputSkillQ.OnTap += () => CobaAktivasiSkill(waterSlashData);
     }
-    private void OnDestroy()
-    {
-        // Wajib unsubscribe biar gak memory leak / error saat objek dihancurkan
-        inputSkill.OnTap -= HandleTapAir;
-        inputSkill.OnHoldStart -= HandleHoldMulaiAir;
-        inputSkill.OnHoldEnd -= HandleHoldSelesaiAir;
-    }
+
     private void Update()
     {
-        if (cooldownWaterBallTersisa > 0f)
-            cooldownWaterBallTersisa -= Time.deltaTime;
-
-        
+        // Kurangi semua cooldown yang lagi jalan
+        List<SkillDatabase> keys = new List<SkillDatabase>(cooldownTersisa.Keys);
+        foreach (var skill in keys)
+        {
+            if (cooldownTersisa[skill] > 0f)
+                cooldownTersisa[skill] -= Time.deltaTime;
+        }
     }
 
-    private void CobaAktivasiWaterBall()
+    private float GetCooldown(SkillDatabase data)
     {
-        if (cooldownWaterBallTersisa > 0f)
+        return cooldownTersisa.TryGetValue(data, out float sisa) ? sisa : 0f;
+    }
+
+    private void CobaAktivasiSkill(ProjectileSkillData data)
+    {
+        if (SedangCasting) return;
+        if (GetCooldown(data) > 0f)
         {
-            Debug.Log("Water Ball masih cooldown: " + cooldownWaterBallTersisa.ToString("F1") + "s");
+            Debug.Log(data.namaSkill + " masih cooldown: " + GetCooldown(data).ToString("F1") + "s");
             return;
         }
-
-        if (manaSaatIni < waterBallData.manaCost)
+        if (manaSaatIni < data.manaCost)
         {
             Debug.Log("Mana tidak cukup");
             return;
         }
 
-        manaSaatIni -= waterBallData.manaCost;
-        cooldownWaterBallTersisa = waterBallData.cooldownTime;
-
+        manaSaatIni -= data.manaCost;
+        cooldownTersisa[data] = data.cooldownTime;
         SedangCasting = true;
+        skillYangSedangDicasting = data;
 
-        // Cuma trigger animasi. Proyektil BELUM di-spawn di sini.
-        animator.SetTrigger(waterBallData.animatorTriggerName);
+        animator.SetTrigger(data.animatorTriggerName);
     }
 
-    // Dipanggil dari ANIMATION EVENT di clip lempar bola air, bukan dari sini
-    public void OnAnimationEvent_SpawnWaterBall()
+    // SATU fungsi ini dipanggil dari Animation Event skill APAPUN yang tipe proyektil
+    public void OnAnimationEvent_SpawnProjectile()
     {
         int arahHadapX = transform.localScale.x >= 0 ? 1 : -1;
-
         SkillContext context = new SkillContext
         {
             caster = transform,
             firePoint = firePoint,
             arahHadap = new Vector2(arahHadapX, 0)
         };
-
-        waterBallData.Eksekusi(context);
+        skillYangSedangDicasting.Eksekusi(context);
     }
+
     public void OnAnimationEvent_SelesaiCasting()
     {
         SedangCasting = false;
-    }
-    private void HandleTapAir()
-    {
-        Debug.Log("Tap terdeteksi");
-        CobaAktivasiWaterBall(); // untuk sekarang, tap = water ball biasa
-    }
-
-    private void HandleHoldMulaiAir()
-    {
-        Debug.Log("Hold mulai — nanti ini trigger Water Jet");
-    }
-
-    private void HandleHoldSelesaiAir()
-    {
-        Debug.Log("Hold selesai");
     }
 }

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WaterBallSkillData", menuName = "Skill/Air/WaterBall")]
-public class WaterBallSkillData : SkillDatabase
+[CreateAssetMenu(fileName = "ProjectileSkillData", menuName = "Skill/ProjectileSkill")]
+public class ProjectileSkillData : SkillDatabase
 {
-    [Header("Water Ball - Khusus")]
+    [Header("Proyektil - Khusus")]
     public GameObject projectilePrefab;
     public float projectileSpeed = 8f;
 

@@ -20,10 +20,14 @@ public class WaterBallProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Musuh"))
+        if (collision.CompareTag("enemy"))
         {
             //TODO enemy terima damage other.GetComponent<Kesehatan>().TerimaDamage(damage);
             Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject,5f);
         }
     }
 }
