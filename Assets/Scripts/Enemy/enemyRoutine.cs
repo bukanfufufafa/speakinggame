@@ -192,9 +192,9 @@ public class EnemyRoutine : MonoBehaviour
     private void Flip()
     {
         if (direction == 1)
-            transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         else
-            transform.localScale = new Vector3(-0.4f, 0.4f, 0.4f);
+            transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
     }
 
     private void OnDrawGizmosSelected()
