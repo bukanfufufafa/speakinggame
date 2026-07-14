@@ -1,0 +1,527 @@
+fileFormatVersion: 2
+guid: c348d86a32d4fef40ba271e2fa5b6c4e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 1511
+        width: 295
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2c6245e5beeff743aed0204c79de31e
+      internalID: 363263013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_1
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 1530
+        width: 295
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5170ba82a7a75740af0c014943074e1
+      internalID: -1340396713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_2
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 1522
+        width: 236
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267f8935c54ffd64cb6e4db7271bb613
+      internalID: 93952984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_4
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 1537
+        width: 338
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bbe89da2ee4f6f4ca6c09cc8bad51f5
+      internalID: 991583800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_5
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 1506
+        width: 220
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb3e4456f3b5ca49b8cb705fd95bdde
+      internalID: -355097371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_7
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1157
+        width: 354
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e839afa1d44b5e4ea4feb6a10331af5
+      internalID: 1391996726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_8
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 1162
+        width: 276
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb855a8c3151bc43bd254bc15e2d43a
+      internalID: 1476093057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_9
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 1150
+        width: 127
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5646bb94897ee54f8702799c021b18e
+      internalID: -1232785006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_11
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 1146
+        width: 260
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83bc28e349283fb43a801cb8c848861a
+      internalID: 1765955711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_12
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 1146
+        width: 195
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8763bbb814976e499fbfd84ccecec7e
+      internalID: -1973398013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_13
+      rect:
+        serializedVersion: 2
+        x: 1647
+        y: 1155
+        width: 211
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570ab6d4cab77bc469724402620a261d
+      internalID: -799868987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_15
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 642
+        width: 330
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb478c7164c71b94db962fe99aa3eea5
+      internalID: 1404566544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_16
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 651
+        width: 328
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de31cf20b5e9e4b49aeebb4743635a86
+      internalID: 43822483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_17
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 630
+        width: 224
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65410dba4f0f24746b03ee3cf88a8ca5
+      internalID: -907435125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_18
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 630
+        width: 255
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e15d2f9def5eba46932479ca57b2aa5
+      internalID: 1235003715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_19
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 626
+        width: 329
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5c425f339af6d42ab4fcd05e012d58
+      internalID: 2056040838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_20
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 60
+        width: 424
+        height: 503
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a5f54e6d6c50864786ef58b89b8a3a3
+      internalID: 1788197113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Env_Vegetation_BRF_21
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 67
+        width: 629
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d932cce9aed9a8a488e447ecc31695c9
+      internalID: 1832220111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 05218e3cb2288a94581e71087059ddbe
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Env_Vegetation_BRF_0: 363263013
+      Env_Vegetation_BRF_1: -1340396713
+      Env_Vegetation_BRF_10: 304495950
+      Env_Vegetation_BRF_11: 1765955711
+      Env_Vegetation_BRF_12: -1973398013
+      Env_Vegetation_BRF_13: -799868987
+      Env_Vegetation_BRF_14: -63306854
+      Env_Vegetation_BRF_15: 1404566544
+      Env_Vegetation_BRF_16: 43822483
+      Env_Vegetation_BRF_17: -907435125
+      Env_Vegetation_BRF_18: 1235003715
+      Env_Vegetation_BRF_19: 2056040838
+      Env_Vegetation_BRF_2: 93952984
+      Env_Vegetation_BRF_20: 1788197113
+      Env_Vegetation_BRF_21: 1832220111
+      Env_Vegetation_BRF_3: 976846428
+      Env_Vegetation_BRF_4: 991583800
+      Env_Vegetation_BRF_5: -355097371
+      Env_Vegetation_BRF_6: -1450116245
+      Env_Vegetation_BRF_7: 1391996726
+      Env_Vegetation_BRF_8: 1476093057
+      Env_Vegetation_BRF_9: -1232785006
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
