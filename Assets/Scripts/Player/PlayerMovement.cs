@@ -20,9 +20,11 @@ public class PlayerController2D : MonoBehaviour
     private PlayerAttack playerAttack;
     private SkillManager skillManager;
     private characterStat stats;
+    private entity_status status; // baru
 
-    // Tambahkan properti helper agar kode lebih bersih
-    private bool IsBusy => (playerAttack != null && playerAttack.isAttacking) || (skillManager != null && skillManager.SedangCasting);
+    private bool IsBusy => (playerAttack != null && playerAttack.isAttacking)
+        || (skillManager != null && skillManager.SedangCasting)
+        || (status != null && status.IsRooted); // baru — kena rooted pas Heal/Mana Restore
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class PlayerController2D : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         skillManager = GetComponent<SkillManager>();
         stats = GetComponent<characterStat>();
+        status = GetComponent<entity_status>(); // baru
     }
 
     public int GetDirection()
@@ -45,12 +48,10 @@ public class PlayerController2D : MonoBehaviour
         {
             moveInput = 0;
             fallThrough = false;
-            // Jika sedang casting/attack, kita paksa velocity X langsung 0 di sini juga agar responsif
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
         else
         {
-            // Input kiri kanan menggunakan Input.GetAxisRaw agar stop-and-go lebih tajam
             if (Input.GetKey(KeyCode.A))
             {
                 moveInput = -1;
@@ -66,13 +67,11 @@ public class PlayerController2D : MonoBehaviour
                 moveInput = 0;
             }
 
-            // Lompat
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
 
-            // Jump Cut
             if (Input.GetButtonUp("Jump"))
             {
                 if (rb.velocity.y > 0)
@@ -81,14 +80,11 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
-            // Flag untuk drop melalui platform
             fallThrough = Input.GetKey(KeyCode.S);
         }
 
-        // Set parameter animasi lari
         anim.SetBool("running", moveInput != 0);
 
-        // Flip karakter
         if (direction == 1)
         {
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
@@ -104,7 +100,6 @@ public class PlayerController2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Jika sedang sibuk casting/menyerang, jangan biarkan ada kalkulasi pergerakan baru
         if (IsBusy)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
