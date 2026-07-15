@@ -10,14 +10,16 @@ public class entity_status : MonoBehaviour
     public float mana;
 
     [SerializeField] protected SpriteRenderer spriteRenderer;
-    private Coroutine damageFlashCoroutine;
+    private Coroutine flashCoroutine;
     private bool sedangRegenTint = false;
     private Color currentRegenColor = Color.white;
 
     public event Action OnDamaged;
     public event Action OnDied;
+    public event Action<bool> OnShieldHit; // true = heavy attack, false = normal attack
 
     public bool IsRooted { get; private set; }
+    public bool IsShielding { get; private set; }
 
     protected virtual void Start()
     {
@@ -26,15 +28,22 @@ public class entity_status : MonoBehaviour
         mana = maxMana;
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(float damage, bool isHeavyAttack = false)
     {
         if (damage <= 0f || health <= 0f) return;
 
-        health = Mathf.Max(0f, health - damage);
+        if (IsShielding)
+        {
+            OnShieldHit?.Invoke(isHeavyAttack);
 
-        if (damageFlashCoroutine != null)
-            StopCoroutine(damageFlashCoroutine);
-        damageFlashCoroutine = StartCoroutine(DamageFlash());
+            if (!isHeavyAttack)
+            {
+                return;
+            }
+        }
+
+        health = Mathf.Max(0f, health - damage);
+        FlashColor(Color.red);
 
         OnDamaged?.Invoke();
 
@@ -42,12 +51,19 @@ public class entity_status : MonoBehaviour
             OnDied?.Invoke();
     }
 
-    private IEnumerator DamageFlash()
+    private void FlashColor(Color color)
     {
-        spriteRenderer.color = Color.red;
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(FlashRoutine(color));
+    }
+
+    private IEnumerator FlashRoutine(Color color)
+    {
+        spriteRenderer.color = color;
         yield return new WaitForSeconds(0.2f);
 
-        damageFlashCoroutine = null;
+        flashCoroutine = null;
         spriteRenderer.color = sedangRegenTint ? currentRegenColor : Color.white;
     }
 
@@ -73,14 +89,17 @@ public class entity_status : MonoBehaviour
         IsRooted = rooted;
     }
 
+    public void SetShielding(bool active)
+    {
+        IsShielding = active;
+    }
+
     public void SetRegenTint(bool active, Color color)
     {
         sedangRegenTint = active;
         currentRegenColor = active ? color : Color.white;
 
-        if (spriteRenderer == null) return;
-        if (damageFlashCoroutine != null) return;
-
+        if (spriteRenderer == null || flashCoroutine != null) return;
         spriteRenderer.color = currentRegenColor;
     }
 }
