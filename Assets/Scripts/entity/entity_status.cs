@@ -11,6 +11,8 @@ public class entity_status : MonoBehaviour
 
     [SerializeField] protected SpriteRenderer spriteRenderer;
     private Coroutine damageFlashCoroutine;
+    private bool sedangRegenTint = false;
+    private Color currentRegenColor = Color.white;
 
     public event Action OnDamaged;
     public event Action OnDied;
@@ -20,7 +22,6 @@ public class entity_status : MonoBehaviour
     protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         health = maxHealth;
         mana = maxMana;
     }
@@ -28,11 +29,15 @@ public class entity_status : MonoBehaviour
     public void takeDamage(float damage)
     {
         if (damage <= 0f || health <= 0f) return;
+
         health = Mathf.Max(0f, health - damage);
+
         if (damageFlashCoroutine != null)
             StopCoroutine(damageFlashCoroutine);
         damageFlashCoroutine = StartCoroutine(DamageFlash());
+
         OnDamaged?.Invoke();
+
         if (health <= 0f)
             OnDied?.Invoke();
     }
@@ -41,8 +46,9 @@ public class entity_status : MonoBehaviour
     {
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        spriteRenderer.color = Color.white;
+
         damageFlashCoroutine = null;
+        spriteRenderer.color = sedangRegenTint ? currentRegenColor : Color.white;
     }
 
     public void RestoreHealth(float amount)
@@ -65,5 +71,16 @@ public class entity_status : MonoBehaviour
     public void SetRooted(bool rooted)
     {
         IsRooted = rooted;
+    }
+
+    public void SetRegenTint(bool active, Color color)
+    {
+        sedangRegenTint = active;
+        currentRegenColor = active ? color : Color.white;
+
+        if (spriteRenderer == null) return;
+        if (damageFlashCoroutine != null) return;
+
+        spriteRenderer.color = currentRegenColor;
     }
 }

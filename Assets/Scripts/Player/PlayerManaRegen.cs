@@ -4,6 +4,7 @@ public class PlayerManaRegen : MonoBehaviour
 {
     public float restoreRate = 20f;
     public KeyCode key = KeyCode.Alpha2;
+    public Color regenTintColor = new Color(0.6f, 0.85f, 1f);
 
     private entity_status status;
     private SkillManager skillManager;
@@ -34,6 +35,7 @@ public class PlayerManaRegen : MonoBehaviour
         {
             sedangRestore = true;
             status.SetRooted(true);
+            status.SetRegenTint(true, regenTintColor);
         }
 
         if (sedangRestore)
@@ -45,5 +47,6 @@ public class PlayerManaRegen : MonoBehaviour
         if (!sedangRestore) return;
         sedangRestore = false;
         status.SetRooted(false);
+        status.SetRegenTint(false, Color.white);
     }
 }

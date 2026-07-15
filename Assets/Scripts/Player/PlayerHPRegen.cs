@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerHPRegen : MonoBehaviour
@@ -9,17 +8,21 @@ public class PlayerHPRegen : MonoBehaviour
     public float healAmount = 40f;
     public float cooldown = 10f;
     public KeyCode key = KeyCode.Alpha1;
+    public Color regenTintColor = new Color(0.6f, 1f, 0.6f);
 
     private entity_status status;
     private SkillManager skillManager;
-    private Coroutine channelRoutine;
+    private bool sedangChanneling = false;
+    private float channelTimer = 0f;
     private float cooldownTersisa;
+    private float manaPerSecond;
 
     private void Awake()
     {
         status = GetComponent<entity_status>();
         skillManager = GetComponent<SkillManager>();
         status.OnDamaged += BatalkanHeal;
+        manaPerSecond = manaCost / castTime;
     }
 
     private void OnDestroy() => status.OnDamaged -= BatalkanHeal;
@@ -28,15 +31,39 @@ public class PlayerHPRegen : MonoBehaviour
     {
         if (cooldownTersisa > 0f) cooldownTersisa -= Time.deltaTime;
 
-        if (Input.GetKeyDown(key) && channelRoutine == null)
-            CobaHeal();
+        bool tombolDitekan = Input.GetKey(key);
 
-        // tombol dilepas sebelum channel selesai -> batal, mana hangus
-        if (channelRoutine != null && !Input.GetKey(key))
+        if (!sedangChanneling)
+        {
+            if (Input.GetKeyDown(key))
+                CobaMulaiHeal();
+            return;
+        }
+
+        // sedang channeling
+        if (!tombolDitekan)
+        {
             BatalkanHeal();
+            return;
+        }
+
+        float dariMana = manaPerSecond * Time.deltaTime;
+        if (!status.SpendMana(dariMana))
+        {
+            BatalkanHeal(); // mana abis di tengah jalan
+            return;
+        }
+
+        channelTimer += Time.deltaTime;
+
+        if (channelTimer >= castTime)
+        {
+            status.RestoreHealth(healAmount);
+            SelesaiHeal();
+        }
     }
 
-    private void CobaHeal()
+    private void CobaMulaiHeal()
     {
         if (skillManager.SedangCasting) return;
         if (cooldownTersisa > 0f) return;
@@ -46,33 +73,28 @@ public class PlayerHPRegen : MonoBehaviour
             return;
         }
 
-        channelRoutine = StartCoroutine(ChannelHeal());
+        sedangChanneling = true;
+        channelTimer = 0f;
+        status.SetRooted(true);
+        status.SetRegenTint(true, regenTintColor);
     }
 
-    private IEnumerator ChannelHeal()
+    private void SelesaiHeal()
     {
-        status.SpendMana(manaCost);
-        status.SetRooted(true);
+        sedangChanneling = false;
+        channelTimer = 0f;
         cooldownTersisa = cooldown;
-
-        float timer = 0f;
-        while (timer < castTime)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        status.RestoreHealth(healAmount);
         status.SetRooted(false);
-        channelRoutine = null;
+        status.SetRegenTint(false, Color.white);
     }
 
     private void BatalkanHeal()
     {
-        if (channelRoutine == null) return;
-        StopCoroutine(channelRoutine);
+        if (!sedangChanneling) return;
+        sedangChanneling = false;
+        channelTimer = 0f;
         status.SetRooted(false);
-        channelRoutine = null;
-        Debug.Log("Heal batal");
+        status.SetRegenTint(false, Color.white);
+        Debug.Log("Heal batal, mana yang udah kepake hangus");
     }
 }
