@@ -20,11 +20,13 @@ public class PlayerController2D : MonoBehaviour
     private PlayerAttack playerAttack;
     private SkillManager skillManager;
     private characterStat stats;
-    private entity_status status; // baru
+    private entity_status status;
+    private PlayerSneak playerSneak; 
 
     private bool IsBusy => (playerAttack != null && playerAttack.isAttacking)
         || (skillManager != null && skillManager.SedangCasting)
-        || (status != null && status.IsRooted); // baru — kena rooted pas Heal/Mana Restore
+        || (status != null && status.IsRooted)
+        || (playerSneak != null && playerSneak.IsHiding);
 
     void Start()
     {
@@ -34,7 +36,8 @@ public class PlayerController2D : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         skillManager = GetComponent<SkillManager>();
         stats = GetComponent<characterStat>();
-        status = GetComponent<entity_status>(); // baru
+        status = GetComponent<entity_status>(); 
+        playerSneak = GetComponent<PlayerSneak>(); 
     }
 
     public int GetDirection()

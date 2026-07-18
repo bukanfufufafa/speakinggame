@@ -1,22 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class enemyDetector : MonoBehaviour
 {
     [SerializeField] EnemyRoutine enemyRoutine;
+    [SerializeField] enemyStatus status;
     [SerializeField] private bool chasingPlayer = false;
-    private bool flee = false;
-    // Start is called before the first frame update
+
+    private PlayerSneak trackedSneak;
+
     void Start()
     {
         enemyRoutine = GetComponent<EnemyRoutine>();
+        status = GetComponent<enemyStatus>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (chasingPlayer)
+        bool blockedBySneak = status != null
+            && status.EnemyType == EnemyType.Human
+            && trackedSneak != null
+            && trackedSneak.IsHiding;
+
+        if (chasingPlayer && !blockedBySneak)
         {
             enemyRoutine.Chasing();
         }
@@ -31,6 +36,7 @@ public class enemyDetector : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             chasingPlayer = true;
+            trackedSneak = collision.GetComponent<PlayerSneak>();
         }
     }
 
@@ -38,9 +44,8 @@ public class enemyDetector : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            chasingPlayer= false;
+            chasingPlayer = false;
+            trackedSneak = null;
         }
     }
-
-    
 }
