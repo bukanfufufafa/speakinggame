@@ -2,11 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class LoadingManager : MonoBehaviour
 {
-    [SerializeField] private Slider progressBar;
+    //[SerializeField] private Slider progressBar;
     //[SerializeField] private TMP_Text loadingText;
     [SerializeField] private float fakeLoadDelay = 2f;
 
@@ -27,10 +26,10 @@ public class LoadingManager : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
             
-            if (progressBar != null)
-            {
-                progressBar.value = progress;
-            }
+            //if (progressBar != null)
+            //{
+            //    progressBar.value = progress;
+            //}
             
             //loadingText.text = $"Loading... {Mathf.FloorToInt(progress * 100)}%";
 

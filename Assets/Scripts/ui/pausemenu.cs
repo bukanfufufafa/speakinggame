@@ -7,7 +7,7 @@ public class pausemenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject creditPanel;
+    
     private bool pause = false;
     // Start is called before the first frame update
     void Start()
@@ -17,10 +17,7 @@ public class pausemenu : MonoBehaviour
         {
             settingsPanel.SetActive(false);
         }
-        if (creditPanel != null)
-        {
-            creditPanel.SetActive(false);
-        }
+       
     }
 
     // Update is called once per frame
@@ -61,6 +58,7 @@ public class pausemenu : MonoBehaviour
 
     public void mainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("mainmenu");
     }
 
