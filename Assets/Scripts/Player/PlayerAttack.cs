@@ -16,10 +16,9 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Combo Stats")]
     public int[] comboDamage = { 10, 15, 25 };
-    // hitBoxTime dihapus karena kita sekarang menggunakan Animation Event untuk mengakhiri serangan
     
     [Tooltip("Waktu jeda (detik) bagi player untuk menekan tombol agar lanjut combo setelah animasi selesai")]
-    public float comboJeda = 0.8f; // Ditingkatkan agar player punya waktu lebih panjang
+    public float comboJeda = 0.8f;
 
     [Header("Animator")]
     public Animator anim;
@@ -72,7 +71,6 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         comboStepAktif = comboStep;
 
-        // Kode modifikasi posisi attackPoint dihapus agar mengikuti posisi manual Unity
 
         anim.SetTrigger("Attack");
         anim.SetInteger("comboStep", comboStep + 1);
@@ -89,14 +87,12 @@ public class PlayerAttack : MonoBehaviour
     // Dipanggil dari Animation Event, di frame saat karakter melempar sihir
     public void OnAnimationEvent_SpawnComboProjectile()
     {
-        // 1. Munculkan Circle Sihir terlebih dahulu
         if (magicCirclePrefab != null)
         {
             GameObject circle = Instantiate(magicCirclePrefab, attackPoint.position, Quaternion.identity);
             Destroy(circle, magicCircleDuration); // Hancurkan setelah durasi selesai
         }
 
-        // 2. Munculkan Proyektil
         GameObject prefab = comboProjectilePrefab[comboStepAktif];
         if (prefab == null)
         {
@@ -117,7 +113,6 @@ public class PlayerAttack : MonoBehaviour
         {
             skripPeluru.Inisialisasi(new Vector2(dir, 0), comboProjectileSpeed[comboStepAktif], finalDamage);
             
-            // Membalikkan sprite proyektil jika menghadap kiri (opsional)
             if (dir < 0)
             {
                 peluru.transform.localScale = new Vector3(-Mathf.Abs(peluru.transform.localScale.x), peluru.transform.localScale.y, peluru.transform.localScale.z);
@@ -125,8 +120,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // --- FUNGSI BARU ---
-    // Dipanggil dari Animation Event, di FRAME TERAKHIR tiap clip animasi attack
     public void OnAnimationEvent_EndAttack()
     {
         isAttacking = false;
