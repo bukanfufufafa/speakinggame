@@ -16,18 +16,20 @@ public class WaterBallProjectile : MonoBehaviour
     void Update()
     {
         transform.Translate( arahHadap * speed * Time.deltaTime, Space.World);
+        Destroy(gameObject,3);
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
+{
+    if (collision.CompareTag("enemy"))
     {
-        if (collision.CompareTag("enemy"))
+        enemyStatus enemy = collision.GetComponent<enemyStatus>();
+        if (enemy != null)
         {
-            //TODO enemy terima damage other.GetComponent<Kesehatan>().TerimaDamage(damage);
-            Destroy(gameObject);
+            enemy.takeDamage((int)damage);
         }
-        else
-        {
-            Destroy(gameObject,5f);
-        }
+        Destroy(gameObject);
     }
+}
 }

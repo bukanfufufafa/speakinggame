@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: 03af7e18c9271454a81fa9754d274568
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: S_VFX_MCBattackLaser2_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1664
+        width: 231
+        height: 81
+      alignment: 9
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c880761f0df8fa041b76d9364b356b6a
+      internalID: 1691325245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: S_VFX_MCBattackLaser2_2
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 1611
+        width: 530
+        height: 140
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94e91b8de2431a4bab08ad7464220a8
+      internalID: -1829590327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: S_VFX_MCBattackLaser2_4
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 941
+        width: 918
+        height: 132
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996f57ca045999e4aa2cad3ff6961740
+      internalID: -537665152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: S_VFX_MCBattackLaser2_5
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 937
+        width: 907
+        height: 160
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be84ad55af9e754d90220d2f3dd0f2f
+      internalID: 314561647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: S_VFX_MCBattackLaser2_8
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 318
+        width: 497
+        height: 121
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d829fddd73b19947b4b372e7285f422
+      internalID: 1011270745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c36c3f5baebd2c04ab6b60004552a321
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      S_VFX_MCBattackLaser2_0: -183826135
+      S_VFX_MCBattackLaser2_1: 1691325245
+      S_VFX_MCBattackLaser2_10: -1055181003
+      S_VFX_MCBattackLaser2_11: -529025291
+      S_VFX_MCBattackLaser2_12: 2031166771
+      S_VFX_MCBattackLaser2_13: -1426139250
+      S_VFX_MCBattackLaser2_14: 1541968412
+      S_VFX_MCBattackLaser2_15: -2127540125
+      S_VFX_MCBattackLaser2_16: 1438493095
+      S_VFX_MCBattackLaser2_17: 1676698671
+      S_VFX_MCBattackLaser2_18: -839925863
+      S_VFX_MCBattackLaser2_19: -1041830631
+      S_VFX_MCBattackLaser2_2: -1829590327
+      S_VFX_MCBattackLaser2_20: 949665954
+      S_VFX_MCBattackLaser2_21: -477594320
+      S_VFX_MCBattackLaser2_22: -165821100
+      S_VFX_MCBattackLaser2_23: 1768560106
+      S_VFX_MCBattackLaser2_24: -1979058553
+      S_VFX_MCBattackLaser2_25: -1977266928
+      S_VFX_MCBattackLaser2_26: -383834934
+      S_VFX_MCBattackLaser2_27: -711190213
+      S_VFX_MCBattackLaser2_28: -1091052865
+      S_VFX_MCBattackLaser2_29: -362590920
+      S_VFX_MCBattackLaser2_3: -1232514411
+      S_VFX_MCBattackLaser2_30: -142053928
+      S_VFX_MCBattackLaser2_31: 992824238
+      S_VFX_MCBattackLaser2_32: -1040732962
+      S_VFX_MCBattackLaser2_33: -2080128754
+      S_VFX_MCBattackLaser2_34: 1364777254
+      S_VFX_MCBattackLaser2_35: -738901576
+      S_VFX_MCBattackLaser2_36: 529165484
+      S_VFX_MCBattackLaser2_37: -360403304
+      S_VFX_MCBattackLaser2_38: 24230240
+      S_VFX_MCBattackLaser2_39: 1344605782
+      S_VFX_MCBattackLaser2_4: -537665152
+      S_VFX_MCBattackLaser2_40: 220586227
+      S_VFX_MCBattackLaser2_41: -1722178134
+      S_VFX_MCBattackLaser2_5: 314561647
+      S_VFX_MCBattackLaser2_6: 1870847200
+      S_VFX_MCBattackLaser2_7: 1447140325
+      S_VFX_MCBattackLaser2_8: 1011270745
+      S_VFX_MCBattackLaser2_9: 1532268600
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

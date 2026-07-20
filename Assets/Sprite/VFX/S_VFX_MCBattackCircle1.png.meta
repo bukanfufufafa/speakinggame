@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99555ea4fd26ebe46b2abf57ee245ce3
+guid: f6ce109a3c0de314a837e8d4d2499e88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -106,17 +106,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_0
+      name: S_VFX_MCBattackCircle1_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2592
-        width: 1333
-        height: 648
+        x: 83
+        y: 1631
+        width: 28
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95f0feaffac903149b6f3be959833825
-      internalID: -166368438
+      spriteID: 9c90c60ce1fb3374bb9639c57a531dd2
+      internalID: -1515679965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_1
+      name: S_VFX_MCBattackCircle1_7
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 2592
-        width: 1333
-        height: 648
+        x: 1416
+        y: 1631
+        width: 28
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfb90ba403bf2574186366a67049cb31
-      internalID: -1027867282
+      spriteID: 561e178772d6b554d867a4cfe6beaa28
+      internalID: 2062226313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_2
+      name: S_VFX_MCBattackCircle1_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1944
-        width: 1333
-        height: 648
+        x: 83
+        y: 984
+        width: 28
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c9f1a93228861249872d79c20a93fa2
-      internalID: 993939039
+      spriteID: f013c6f05add3324492e30c328b07aad
+      internalID: -1864133776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_3
+      name: S_VFX_MCBattackCircle1_9
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 1944
-        width: 1333
-        height: 648
+        x: 1416
+        y: 989
+        width: 28
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 499db7cd258bc3b40912e0fb8988cb8d
-      internalID: -1780894610
+      spriteID: b886da41d112d2a418d5418ce0495d55
+      internalID: -1114527391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_4
+      name: S_VFX_MCBattackCircle1_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1296
-        width: 1333
-        height: 648
+        x: 85
+        y: 378
+        width: 26
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50d5252592b1e6c4c82ee47e771b93e5
-      internalID: -1958818813
+      spriteID: ec1b801e08fe7714880d7613fcfe5d02
+      internalID: 618528433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_5
+      name: S_VFX_MCBattackCircle1_0
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 1296
-        width: 1333
-        height: 648
+        x: 77
+        y: 2268
+        width: 102
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a96e5a74abbc7d4cabf8a92cca57f21
-      internalID: -1240231479
+      spriteID: 0ad105ed2b2d5a444852c53f93ea9ccc
+      internalID: 459449135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack3_6
+      name: S_VFX_MCBattackCircle1_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 648
-        width: 1333
-        height: 648
+        x: 1411
+        y: 2271
+        width: 103
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,50 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55941c1b911a0e541b5a4d6ac0b4d8bd
-      internalID: 1065023561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: S_VFX_MCBattack3_7
-      rect:
-        serializedVersion: 2
-        x: 1333
-        y: 648
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb308803973f4b3408489715aad7db15
-      internalID: -1700020585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: S_VFX_MCBattack3_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05949944667279d418dd1147cf0b60a8
-      internalID: -1246328561
+      spriteID: 342066baba974c149b580d02f9a92047
+      internalID: -1794171330
       vertices: []
       indices: 
       edges: []
@@ -301,7 +272,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dbfa61bddae73f54b954265547e4eebc
+    spriteID: c78765c604088214886ee03efb9cd745
     internalID: 0
     vertices: []
     indices: 
@@ -309,15 +280,36 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      S_VFX_MCBattack3_0: -166368438
-      S_VFX_MCBattack3_1: -1027867282
-      S_VFX_MCBattack3_2: 993939039
-      S_VFX_MCBattack3_3: -1780894610
-      S_VFX_MCBattack3_4: -1958818813
-      S_VFX_MCBattack3_5: -1240231479
-      S_VFX_MCBattack3_6: 1065023561
-      S_VFX_MCBattack3_7: -1700020585
-      S_VFX_MCBattack3_8: -1246328561
+      S_VFX_MCBattackCircle1_0: 459449135
+      S_VFX_MCBattackCircle1_1: -1794171330
+      S_VFX_MCBattackCircle1_10: -683877853
+      S_VFX_MCBattackCircle1_11: -866261507
+      S_VFX_MCBattackCircle1_12: 1949800208
+      S_VFX_MCBattackCircle1_13: -614117000
+      S_VFX_MCBattackCircle1_14: 290120047
+      S_VFX_MCBattackCircle1_15: -1225460428
+      S_VFX_MCBattackCircle1_16: -468603344
+      S_VFX_MCBattackCircle1_17: 618528433
+      S_VFX_MCBattackCircle1_18: 1787067380
+      S_VFX_MCBattackCircle1_19: -697773228
+      S_VFX_MCBattackCircle1_2: 675965236
+      S_VFX_MCBattackCircle1_20: -1224629551
+      S_VFX_MCBattackCircle1_21: 1276774733
+      S_VFX_MCBattackCircle1_22: 498829083
+      S_VFX_MCBattackCircle1_23: -1535174228
+      S_VFX_MCBattackCircle1_24: 1313521089
+      S_VFX_MCBattackCircle1_25: 1975601804
+      S_VFX_MCBattackCircle1_26: -616064191
+      S_VFX_MCBattackCircle1_27: 620022364
+      S_VFX_MCBattackCircle1_28: -21464498
+      S_VFX_MCBattackCircle1_29: 1913818629
+      S_VFX_MCBattackCircle1_3: 568853092
+      S_VFX_MCBattackCircle1_4: -1009952634
+      S_VFX_MCBattackCircle1_5: 959159602
+      S_VFX_MCBattackCircle1_6: -1515679965
+      S_VFX_MCBattackCircle1_7: 2062226313
+      S_VFX_MCBattackCircle1_8: -1864133776
+      S_VFX_MCBattackCircle1_9: -1114527391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
