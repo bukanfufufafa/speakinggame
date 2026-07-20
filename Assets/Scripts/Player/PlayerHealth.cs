@@ -31,7 +31,7 @@ public class PlayerHealth : entity_status
 
         if (health <= 0)
         {
-            SceneManager.LoadScene("gameover");
+            SceneManager.LoadScene("tes");
         }
     }
 }

@@ -2,60 +2,56 @@ using UnityEngine;
 
 public class BackgroundController : MonoBehaviour
 {
-    private float startPosX;
-    private float startPosY;
-    private float length;
-
-    public GameObject cam;
+    [Header("References")]
+    public Transform cam;
 
     [Header("Parallax")]
-    [Range(0f, 1f)] public float parallaxX = 0.5f;
-    [Range(0f, 1f)] public float parallaxY = 0.5f;
+    [Range(0f, 1f)]
+    public float parallaxX = 0.5f;
+
+    [Range(0f, 1f)]
+    public float parallaxY = 0.5f;
 
     [Header("Infinite Scroll")]
     public bool infiniteScroll = true;
 
-    private float movement;
+    private float startPosX;
+    private float startPosY;
+    private float spriteLength;
 
     void Start()
     {
         startPosX = transform.position.x;
         startPosY = transform.position.y;
 
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+        if (sr != null)
+            spriteLength = sr.bounds.size.x;
+        else
+            Debug.LogError("BackgroundController membutuhkan SpriteRenderer!");
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        // Hitung posisi parallax
-        float distanceX = cam.transform.position.x * parallaxX;
-        float distanceY = cam.transform.position.y * parallaxY;
+        // Efek parallax
+        float posX = startPosX + cam.position.x * parallaxX;
+        float posY = startPosY + cam.position.y * parallaxY;
 
-        // Digunakan untuk infinite scroll horizontal
-        movement = cam.transform.position.x * (1 - parallaxX);
-
-        // Update posisi background
-        transform.position = new Vector3(
-            startPosX + distanceX,
-            startPosY + distanceY,
-            transform.position.z
-        );
+        transform.position = new Vector3(posX, posY, transform.position.z);
 
         if (infiniteScroll)
         {
-            Infinite();
-        }
-    }
+            float camRelative = cam.position.x * (1 - parallaxX);
 
-    void Infinite()
-    {
-        if (movement > startPosX + length)
-        {
-            startPosX += length;
-        }
-        else if (movement < startPosX - length)
-        {
-            startPosX -= length;
+            if (camRelative > startPosX + spriteLength)
+            {
+                startPosX += spriteLength;
+            }
+            else if (camRelative < startPosX - spriteLength)
+            {
+                startPosX -= spriteLength;
+            }
         }
     }
 }
