@@ -26,7 +26,12 @@ public class LoadingManager : MonoBehaviour
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            progressBar.value = progress;
+            
+            if (progressBar != null)
+            {
+                progressBar.value = progress;
+            }
+            
             //loadingText.text = $"Loading... {Mathf.FloorToInt(progress * 100)}%";
 
             if (operation.progress >= 0.9f)
