@@ -1,63 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BackgroundController : MonoBehaviour
 {
-    private float startPos;
+    private float startPosX;
+    private float startPosY;
     private float length;
 
     public GameObject cam;
-    public float parallaxEffect; // kecepatan background relatif terhadap kamera
-    public bool infiniteScroll;
 
+    [Header("Parallax")]
+    [Range(0f, 1f)] public float parallaxX = 0.5f;
+    [Range(0f, 1f)] public float parallaxY = 0.5f;
 
-    private float distance;
+    [Header("Infinite Scroll")]
+    public bool infiniteScroll = true;
+
     private float movement;
+
     void Start()
     {
-        startPos = transform.position.x;
+        startPosX = transform.position.x;
+        startPosY = transform.position.y;
+
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     void FixedUpdate()
     {
-        // Hitung pergerakan berdasarkan posisi kamera
-        distance = cam.transform.position.x * parallaxEffect;
-        movement = cam.transform.position.x * (1 - parallaxEffect);
+        // Hitung posisi parallax
+        float distanceX = cam.transform.position.x * parallaxX;
+        float distanceY = cam.transform.position.y * parallaxY;
+
+        // Digunakan untuk infinite scroll horizontal
+        movement = cam.transform.position.x * (1 - parallaxX);
 
         // Update posisi background
         transform.position = new Vector3(
-            startPos + distance,
-            transform.position.y,
+            startPosX + distanceX,
+            startPosY + distanceY,
             transform.position.z
         );
 
-        if ( infiniteScroll)
+        if (infiniteScroll)
         {
-            infinite();
+            Infinite();
         }
-        // Infinite scrolling
-        //if (movement > startPos + length)
-        //{
-        //    startPos += length;
-        //}
-        //else if (movement < startPos - length)
-        //{
-        //    startPos -= length;
-        //}
     }
 
-    void infinite()
+    void Infinite()
     {
-        if (movement > startPos + length)
+        if (movement > startPosX + length)
         {
-            startPos += length;
+            startPosX += length;
         }
-        else if (movement < startPos - length)
+        else if (movement < startPosX - length)
         {
-            startPos -= length;
+            startPosX -= length;
         }
     }
 }
