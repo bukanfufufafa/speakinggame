@@ -6,10 +6,10 @@ public class BackgroundController : MonoBehaviour
     public Transform cam;
 
     [Header("Parallax")]
-    [Range(0f, 1f)]
+   
     public float parallaxX = 0.5f;
 
-    [Range(0f, 1f)]
+   
     public float parallaxY = 0.5f;
 
     [Header("Infinite Scroll")]
