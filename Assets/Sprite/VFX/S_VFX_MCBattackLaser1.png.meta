@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43f010a758ae9004d8878c0048d1ab6d
+guid: ad97b258f354c2e45b12f06c0ec73c9d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,9 +69,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -106,173 +106,123 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: S_VFX_MCBattack2_0
+      name: S_VFX_MCBattackLaser1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1944
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 155
+        y: 1647
+        width: 108
+        height: 32
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48fb58892f2827f499fd42fe82a7b9ee
-      internalID: 112496515
+      spriteID: c1bad23652d05284b992bdebdd95b4b1
+      internalID: -861919477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack2_1
+      name: S_VFX_MCBattackLaser1_1
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 1944
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1483
+        y: 1629
+        width: 549
+        height: 82
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c7da94a1339bad4faf32c477ea963f8
-      internalID: 1739052890
+      spriteID: ffb228d0b531b04489a855e7bc482ed0
+      internalID: -1108778853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack2_2
+      name: S_VFX_MCBattackLaser1_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1296
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 131
+        y: 935
+        width: 1132
+        height: 160
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87615e1ad2c03f043aae98c210e5d164
-      internalID: -1905594261
+      spriteID: f22b2113cfe83e641bd0e3016caa2ff1
+      internalID: -1797508356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack2_3
+      name: S_VFX_MCBattackLaser1_3
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 1296
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1532
+        y: 905
+        width: 1064
+        height: 228
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 390bed48e724e564f8a7c178760af01d
-      internalID: -1653476651
+      spriteID: 82287f0463f2bac41945fd997ce1cf91
+      internalID: 1498927116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_VFX_MCBattack2_4
+      name: S_VFX_MCBattackLaser1_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 648
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 653
+        y: 277
+        width: 608
+        height: 205
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e04b0a9408d21f14f94105218bd75bf2
-      internalID: 435447701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: S_VFX_MCBattack2_5
-      rect:
-        serializedVersion: 2
-        x: 1333
-        y: 648
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a2237c35e3b05648bdc84e892c73a89
-      internalID: -558454989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: S_VFX_MCBattack2_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 106c37f0849fe7f4b8e979292ac9df11
-      internalID: -297758688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: S_VFX_MCBattack2_7
-      rect:
-        serializedVersion: 2
-        x: 1333
-        y: 0
-        width: 1333
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64b40470d7d02a94fa5e47ec70546c76
-      internalID: 808203295
+      spriteID: 9c8eb34ae7592e241b6429c566b07375
+      internalID: 1719787008
       vertices: []
       indices: 
       edges: []
@@ -280,7 +230,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3ab9d0a8a91e43845997fc8db01ed5c2
+    spriteID: 783b4924efbe29444ae366877636c4af
     internalID: 0
     vertices: []
     indices: 
@@ -288,14 +238,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      S_VFX_MCBattack2_0: 112496515
-      S_VFX_MCBattack2_1: 1739052890
-      S_VFX_MCBattack2_2: -1905594261
-      S_VFX_MCBattack2_3: -1653476651
-      S_VFX_MCBattack2_4: 435447701
-      S_VFX_MCBattack2_5: -558454989
-      S_VFX_MCBattack2_6: -297758688
-      S_VFX_MCBattack2_7: 808203295
+      S_VFX_MCBattackLaser1_0: -861919477
+      S_VFX_MCBattackLaser1_1: -1108778853
+      S_VFX_MCBattackLaser1_10: 57653588
+      S_VFX_MCBattackLaser1_11: 229905050
+      S_VFX_MCBattackLaser1_12: -1051660170
+      S_VFX_MCBattackLaser1_13: 1298783796
+      S_VFX_MCBattackLaser1_2: -1797508356
+      S_VFX_MCBattackLaser1_3: 1498927116
+      S_VFX_MCBattackLaser1_4: 571124035
+      S_VFX_MCBattackLaser1_5: 866643535
+      S_VFX_MCBattackLaser1_6: -345082641
+      S_VFX_MCBattackLaser1_7: -1852384470
+      S_VFX_MCBattackLaser1_8: -848843414
+      S_VFX_MCBattackLaser1_9: 1719787008
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
