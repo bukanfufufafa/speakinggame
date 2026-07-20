@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     // attackDistance dihapus karena posisi akan mengikuti settingan manual di Inspector
 
     [Header("Efek Visual (Circle Sihir)")]
-    public GameObject magicCirclePrefab; 
+    public GameObject magicCirclePrefab;
     public float magicCircleDuration = 1f; // Waktu sebelum circle sihir hancur otomatis
 
     [Header("Combo - Proyektil")]
@@ -16,13 +16,13 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Combo Stats")]
     public int[] comboDamage = { 10, 15, 25 };
-    
+
     [Tooltip("Waktu jeda (detik) bagi player untuk menekan tombol agar lanjut combo setelah animasi selesai")]
     public float comboJeda = 0.8f;
 
     [Header("Animator")]
     public Animator anim;
-    
+
     [Header("Cooldown")]
     public float cooldownTime = 0.5f;
 
@@ -33,6 +33,8 @@ public class PlayerAttack : MonoBehaviour
     private bool inputBuffered = false;
     private PlayerController2D playerControll;
     private characterStat stats;
+    private float timerSetFalse;//timer buat sset false attack
+    public float batasWaktuAnimasi = 1.5f;
     public bool isAttacking { get; private set; }
 
     void Start()
@@ -43,14 +45,26 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        // Hitung mundur jeda combo hanya saat tidak sedang menyerang
-        if (!isAttacking)
+        if (isAttacking)
+        {// attacknya di anuin kalau error nanti di reset
+            timerSetFalse -= Time.deltaTime;
+            if (timerSetFalse <= 0)
+            {
+                Debug.LogWarning("Karakter Di reset.");
+                isAttacking = false;
+                inputBuffered = false;
+                isCooldown = false;
+                comboStep = 0;
+                anim.SetInteger("comboStep", 0);
+            }
+        }
+        else
         {
             if (comboTimer > 0)
                 comboTimer -= Time.deltaTime;
             else
             {
-                comboStep = 0; // Reset combo jika jeda habis
+                comboStep = 0;
                 anim.SetInteger("comboStep", 0);
             }
         }
@@ -70,6 +84,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = true;
         comboStepAktif = comboStep;
+        timerSetFalse = batasWaktuAnimasi;
 
 
         anim.SetTrigger("Attack");
@@ -108,11 +123,11 @@ public class PlayerAttack : MonoBehaviour
 
         GameObject peluru = Instantiate(prefab, attackPoint.position, Quaternion.identity);
         WaterBallProjectile skripPeluru = peluru.GetComponent<WaterBallProjectile>();
-        
+
         if (skripPeluru != null)
         {
             skripPeluru.Inisialisasi(new Vector2(dir, 0), comboProjectileSpeed[comboStepAktif], finalDamage);
-            
+
             if (dir < 0)
             {
                 peluru.transform.localScale = new Vector3(-Mathf.Abs(peluru.transform.localScale.x), peluru.transform.localScale.y, peluru.transform.localScale.z);
@@ -122,10 +137,12 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnAnimationEvent_EndAttack()
     {
+        Debug.Log("Event EndAttack Terpanggil! isAttacking sekarang false.");
         isAttacking = false;
-        
+
         // Mulai hitung waktu jeda (window untuk lanjut combo) SETELAH animasi selesai sepenuhnya
-        comboTimer = comboJeda; 
+        comboTimer = comboJeda;
+        anim.ResetTrigger("Attack");
 
         if (inputBuffered && !isCooldown)
         {

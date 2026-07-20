@@ -16,7 +16,7 @@ public class WaterBallProjectile : MonoBehaviour
     void Update()
     {
         transform.Translate( arahHadap * speed * Time.deltaTime, Space.World);
-        Destroy(gameObject,3);
+        Destroy(gameObject,1.5f);
 
     }
 
