@@ -12,14 +12,9 @@ public class mainmenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (settingsPanel != null )
-        {
-            settingsPanel.SetActive(false);
-        }
-        if ( creditPanel != null)
-        {
-            creditPanel.SetActive(false);
-        }
+        settingsPanel.SetActive(false);
+        creditPanel.SetActive(false);
+        
     }
 
     // Update is called once per frame
