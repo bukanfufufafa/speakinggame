@@ -17,6 +17,9 @@ public class PlayerHPRegen : MonoBehaviour
     private float cooldownTersisa;
     private float manaPerSecond;
 
+    [Header("VFX")]
+    public GameObject healVFX;
+
     private void Awake()
     {
         status = GetComponent<entity_status>();
@@ -40,7 +43,6 @@ public class PlayerHPRegen : MonoBehaviour
             return;
         }
 
-        // sedang channeling
         if (!tombolDitekan)
         {
             BatalkanHeal();
@@ -50,7 +52,7 @@ public class PlayerHPRegen : MonoBehaviour
         float dariMana = manaPerSecond * Time.deltaTime;
         if (!status.SpendMana(dariMana))
         {
-            BatalkanHeal(); // mana abis di tengah jalan
+            BatalkanHeal();
             return;
         }
 
@@ -77,6 +79,11 @@ public class PlayerHPRegen : MonoBehaviour
         channelTimer = 0f;
         status.SetRooted(true);
         status.SetRegenTint(true, regenTintColor);
+
+        if (healVFX != null)
+        {
+            healVFX.SetActive(true);
+        }
     }
 
     private void SelesaiHeal()
@@ -86,6 +93,10 @@ public class PlayerHPRegen : MonoBehaviour
         cooldownTersisa = cooldown;
         status.SetRooted(false);
         status.SetRegenTint(false, Color.white);
+        if (healVFX != null)
+        {
+            healVFX.SetActive(false);
+        }
     }
 
     private void BatalkanHeal()
@@ -96,5 +107,9 @@ public class PlayerHPRegen : MonoBehaviour
         status.SetRooted(false);
         status.SetRegenTint(false, Color.white);
         Debug.Log("Heal batal, mana yang udah kepake hangus");
+        if (healVFX != null)
+        {
+            healVFX.SetActive(false);
+        }
     }
 }
